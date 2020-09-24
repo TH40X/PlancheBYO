@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Planche LFFL</title>
+    </head>
+    <body>
+        <h1>Planche LFFL du {{data.day}}/{{data.month}}/{{data.year}}</h1>
+        <form action="http://localhost:5000/newLine" method="post">
+            <input type="hidden" name="action" value="new">
+            <input type="submit" value="Ajouter un vol">
+        </form>
+        <table>
+        {% for line in data.sqlData %}
+        <tr>
+            {% for value in line %}
+            <td>{{value}}</td>
+            {% endfor %}
+            <td>
+            <form action="http://localhost:5000/newLine" method="post">
+                <input type="hidden" name="action" value="mod">
+                <input type="hidden" name="id" value="{{line[0]}}">
+                <input type="submit" value="Modifier">
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+    </body>
+</html>
