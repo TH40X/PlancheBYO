@@ -9,6 +9,12 @@ def getStrDay():
         return(("0" + str(char))[-l:])
     return("DB" + addZero(td.day, 2) + addZero(td.month, 2) + addZero(td.year, 4))
 
+def getGliders():
+    conn = sqlite3.connect("DB/gliders.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM glider")
+    return(cursor.fetchall())
+
 def createDB():
     conn = sqlite3.connect("DB/base.db")
     cursor = conn.cursor()

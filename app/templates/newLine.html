@@ -12,9 +12,10 @@
             <form action="http://localhost:5000/saveLine" method="post">
                 <input type="hidden" name="action" value="{{data.info}}"/>
                 <input type="hidden" name="id" value="{{data.id}}"/>
+                <input type="hidden" id="glidersDict" name="glidersDict" value="{{data.gliders}}"/>
                 <tr>
-                    <td> <input type="text" name="cn" placeholder="Numero de concours" value="{{data.lineData[1]}}"/> </td>
-                    <td> <input type="text" name="immat" placeholder="Immatriculation" value="{{data.lineData[2]}}" required="required"/> </td>
+                    <td> <input type="text" name="cn" id="cnInput" placeholder="Numero de concours" value="{{data.lineData[1]}}"/> </td>
+                    <td> <input type="text" name="immat" id="immatInput" placeholder="Immatriculation" value="{{data.lineData[2]}}" required="required"/> </td>
                 </tr>
                 <tr>
                     <td> <input type="text" name="pilot" placeholder="Nom du pilote" value="{{data.lineData[3]}}" required="required"/> </td>

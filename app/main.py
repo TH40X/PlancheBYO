@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request
 import sqlite3
-from DB.initDB import createDB, insertData, extractData, getDBLine, modifyData, deleteData
+from DB.initDB import createDB, insertData, extractData, getDBLine, modifyData, deleteData, getGliders
 from datetime import date
 
 app = Flask(__name__)
@@ -21,6 +21,7 @@ def supprLine():
 def newLine():
     result = dict(request.form)
     data = Data()
+    data.loadGliders()
     if result["action"] == "new":
         data.lineData = ("", "", "", "", "", "", "", "")
         data.info = "new"
@@ -61,6 +62,8 @@ class Data:
         return(("0" + str(char))[-l:])
     def loadSQL(self):
         self.sqlData = list(sorted(extractData(), reverse = True, key = lambda x: timeToInt(x[5])))
+    def loadGliders(self):
+        self.gliders = dict(getGliders())
 
 def timeToInt(value):
     return(int(value[:2]) * 60 + int(value[3:]))
