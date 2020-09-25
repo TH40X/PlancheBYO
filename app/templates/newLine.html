@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/newLine.css') }}">
         <meta charset="utf-8">
         <title>Planche LFFL</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script src="static/js/file.js"></script>
     </head>
     <body>
         <table>
@@ -19,12 +21,12 @@
                     <td> <input type="text" name="copilot" placeholder="Nom du copilote" value="{{data.lineData[4]}}"/> </td>
                 </tr>
                 <tr>
-                    <td> <input type="text" name="takeofftime" placeholder="Décollage" value="{{data.lineData[5]}}"/> </td>
-                    <td> </td>
+                    <td> <input type="text" id="idtakeofftime" name="takeofftime" placeholder="Décollage" value="{{data.lineData[5]}}"/> </td>
+                    <td> <button id="settakeofftime" type="button" style="background-color:#C0DFEF"/> Heure actuelle </button> </td>
                 </tr>
                 <tr>
-                    <td> <input type="text" name="landingtime" placeholder="Atterrissage" value="{{data.lineData[6]}}"/> </td>
-                    <td> </td>
+                    <td> <input type="text" id="idlandingtime" name="landingtime" placeholder="Atterrissage" value="{{data.lineData[6]}}"/> </td>
+                    <td> <button id="setlandingtime" type="button" style="background-color:#C0DFEF"> Heure actuelle </button> </td>
                 </tr>
                 <tr>
                     <td colspan="2"> <input type="text" name="addinfo" placeholder="Informations" value="{{data.lineData[7]}}"/> </td>
