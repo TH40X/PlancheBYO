@@ -14,10 +14,10 @@
                 <input type="hidden" name="id" value="{{data.id}}"/>
                 <tr>
                     <td> <input type="text" name="cn" placeholder="Numero de concours" value="{{data.lineData[1]}}"/> </td>
-                    <td> <input type="text" name="immat" placeholder="Immatriculation" value="{{data.lineData[2]}}"/> </td>
+                    <td> <input type="text" name="immat" placeholder="Immatriculation" value="{{data.lineData[2]}}" required="required"/> </td>
                 </tr>
                 <tr>
-                    <td> <input type="text" name="pilot" placeholder="Nom du pilote" value="{{data.lineData[3]}}"/> </td>
+                    <td> <input type="text" name="pilot" placeholder="Nom du pilote" value="{{data.lineData[3]}}" required="required"/> </td>
                     <td> <input type="text" name="copilot" placeholder="Nom du copilote" value="{{data.lineData[4]}}"/> </td>
                 </tr>
                 <tr>
@@ -29,16 +29,23 @@
                     <td> <button id="setlandingtime" type="button" style="background-color:#C0DFEF"> Heure actuelle </button> </td>
                 </tr>
                 <tr>
-                    <td colspan="2"> <input type="text" name="addinfo" placeholder="Informations" value="{{data.lineData[7]}}"/> </td>
+                    <td> <input type="text" name="plane" placeholder="Remorqueur" value="{{data.lineData[7]}}" required="required"/> </td>
+                    <td> <input type="text" name="addinfo" placeholder="Informations" value="{{data.lineData[8]}}"/> </td>
                 </tr>
                 <tr>
-                    <td colspan="2"> <input type="submit" value="Enregistrer" style="background-color:#78866B"/> </td>
+                    <td>
+                        <a href="http://localhost:5000/">
+                            <button type="button" style="background-color:#A98307">Annuler</button>
+                        </a>
+                    </td>
+                    <td> <input type="submit" value="Enregistrer" style="background-color:#78866B"/> </td>
                 </tr>
             </form>
             {% if data.info == "mod" %}
-            <form action="http://localhost:5000/supprLine" method="post">
+            <form action="http://localhost:5000/supprLine" id="formSuppr" method="post">
                 <tr>
-                    <td colspan="2"> <input type="submit" value="Supprimer" style="background-color:#D36E70"/> </td>
+                    <input type="hidden" name="id" value="{{data.id}}"/>
+                    <td colspan="2"> <button type="button" id="supprButton" style="background-color:#D36E70"/>Supprimer</td>
                 </tr>
             </form>
             {% endif %}

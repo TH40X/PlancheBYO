@@ -2,13 +2,19 @@
 
 from flask import Flask, render_template, request
 import sqlite3
-from DB.initDB import createDB, insertData, extractData, getDBLine, modifyData
+from DB.initDB import createDB, insertData, extractData, getDBLine, modifyData, deleteData
 from datetime import date
 
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    return(loadIndex())
+
+@app.route('/supprLine', methods=["POST"])
+def supprLine():
+    result = dict(request.form)
+    deleteData(result["id"])
     return(loadIndex())
 
 @app.route('/newLine', methods=['POST'])
@@ -33,6 +39,10 @@ def saveLine():
         modifyData(result["id"], result)
     return(loadIndex())
 
+@app.route('/test')
+def test():
+    return(render_template("test.html"))
+
 @app.route('/modLine', methods=["POST"])
 def modLine():
     result = dict(request.form)
@@ -50,7 +60,10 @@ class Data:
     def addZero(self, char, l):
         return(("0" + str(char))[-l:])
     def loadSQL(self):
-        self.sqlData = list(reversed(extractData()))
+        self.sqlData = list(sorted(extractData(), reverse = True, key = lambda x: timeToInt(x[5])))
+
+def timeToInt(value):
+    return(int(value[:2]) * 60 + int(value[3:]))
 
 def loadIndex():
     data = Data()
