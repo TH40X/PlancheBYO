@@ -9,7 +9,7 @@
     </head>
     <body>
         <table>
-            <form action="http://localhost:5000/saveLine" method="post">
+            <form id="formSave" action="http://localhost:5000/saveLine" method="post">
                 <input type="hidden" name="action" value="{{data.info}}"/>
                 <input type="hidden" name="id" value="{{data.id}}"/>
                 <input type="hidden" id="glidersDict" name="glidersDict" value="{{data.gliders}}"/>
@@ -39,7 +39,7 @@
                             <button type="button" style="background-color:#A98307">Annuler</button>
                         </a>
                     </td>
-                    <td> <input type="submit" value="Enregistrer" style="background-color:#78866B"/> </td>
+                    <td> <button type="button" id="saveButton" style="background-color:#78866B"/>Enregistrer</td>
                 </tr>
             </form>
             {% if data.info == "mod" %}

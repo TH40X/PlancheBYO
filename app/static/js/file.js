@@ -5,6 +5,17 @@ function checkTime(i) {
   return i;
 }
 
+function validTime(t1, t2) {
+    function strToInt(t) {
+        return parseInt(t.slice(0, 2)) * 60 + parseInt(t.slice(3))
+    }
+    if (strToInt(t2) > strToInt(t1)) {
+        return true
+    } else {
+        return false
+    }
+}
+
 function parsePython(s, cn){
     var info = s.slice(1, -1)
     info = info.replace(/ /g, "")
@@ -25,6 +36,16 @@ $(function(){
         var gliders = $("#glidersDict").val();
         var gliderImmat = parsePython(gliders, cn)
         $("#immatInput").val(gliderImmat);
+    });
+
+    $("#saveButton").click(function(){
+        var start = $("#idtakeofftime").val()
+        var end = $("#idlandingtime").val()
+        if (validTime(start, end)){
+            $("#formSave").submit();
+        } else {
+            alert("Heure d'arrivée avant le départ.")
+        };
     });
 
     $("#supprButton").click(function(){
